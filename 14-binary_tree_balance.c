@@ -2,7 +2,7 @@
 
 #define Max(a, b) (a > b ? a + 1 : b + 1)
 /**
- * binary_tree_height - compute the height of BT recursively
+ * _binary_tree_height - compute the height of BT recursively
  * @tree: pointer to the root of ze tree
  *
  * Return: size of the tree
