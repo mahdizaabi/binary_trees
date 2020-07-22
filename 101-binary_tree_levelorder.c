@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "binary_trees.h"
-
 #define Max(a, b) (a > b ? a + 1 : b + 1)
 
 /**
@@ -10,6 +9,7 @@
  *
  * Return: size of the tree
  */
+
 size_t binary_tree_height(const binary_tree_t *tree)
 {
 	size_t l = 0;
@@ -19,13 +19,13 @@ size_t binary_tree_height(const binary_tree_t *tree)
 		return (0);
 	l = binary_tree_height(tree->left);
 	r = binary_tree_height(tree->right);
-	if (tree && tree->right == NULL && tree->left == NULL)
+	if (tree->right == NULL && tree->left == NULL)
 		return (0);
 	return (Max(l, r));
 }
 
 /**
- * check_first_level - check level o
+ * check_level - check level o
  * @tree: pointer to the root of the tree
  * @l: level of the tree
  * @func: print function
@@ -58,6 +58,6 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	if (tree == NULL || func == NULL)
 		return;
 	height = binary_tree_height(tree);
-	for (i = 1; i <= height; i++)
+	for (i = 1; i <= height + 1; i++)
 		check_level(tree, i, func);
 }
