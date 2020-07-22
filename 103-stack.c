@@ -1,5 +1,5 @@
 #include ""
-#define N 10 /* size of the Queue */
+#define BUFFER 1024 /* size of the Queue */
 
 /**
  *Stack implementation
@@ -11,7 +11,7 @@
 binary_tree_t **createq(int *front, int *rear)
 {
 	binary_tree_t **queue = NULL;
-	queue = malloc(sizeof(binary_tree_t*) * buffer);
+	queue = malloc(sizeof(binary_tree_t*) * BUFFER);
 	if (queue == NULL)
 		return NULL;
 	*front = *rear = 0;
@@ -37,6 +37,8 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	int rear;
 	int front;
 	binary_tree_t *parent = NULL;
+	bool flag = false;
+
 	if (tree == NULL)
 		return (NULL);
 
@@ -49,7 +51,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (parent->left)
 		{
 			if (flag == true)
-				return false;
+				return 0;
 			enq(queue, &rear, parent->left);
 		}
 		else
@@ -58,7 +60,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (parent->right)
 		{
 			if(flag == true)
-			return false;
+			return 0;
 			enq(queue, &rear, parent->right);
 		}
 		else
@@ -66,3 +68,4 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	}
 
 	return (1);
+}
