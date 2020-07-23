@@ -19,7 +19,8 @@ int _binary_tree_height(const binary_tree_t *tree)
 
 	l = _binary_tree_height(tree->left);
 	r = _binary_tree_height(tree->right);
-	
+	if (tree && tree->right == NULL && tree->left == NULL)
+		return (-1);
 	return (Max(l, r));
 
 }
