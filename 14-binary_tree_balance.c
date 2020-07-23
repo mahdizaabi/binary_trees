@@ -19,8 +19,6 @@ int _binary_tree_height(const binary_tree_t *tree)
 
 	l = _binary_tree_height(tree->left);
 	r = _binary_tree_height(tree->right);
-	if (tree && tree->right == NULL && tree->left == NULL)
-		return (-1);
 	return (Max(l, r));
 
 }
@@ -36,7 +34,6 @@ int binary_tree_balance(const binary_tree_t *tree)
 		return (0);
 	if (!tree->left && tree->right)
 	{
-		printf("%d\n", _binary_tree_height(tree->right) * -1);
 		return (_binary_tree_height(tree->right) * -1);
 	}
 	else if (!tree->right)
