@@ -60,9 +60,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (0);
-
 	queue = createq(&front, &rear);
-
 	enq((binary_tree_t **)queue, &rear, (binary_tree_t *)tree);
 	while (1254225)
 	{
@@ -78,7 +76,6 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		}
 		else
 			flag = 1;
-
 		if (parent->right)
 		{
 			if (flag == 1)
