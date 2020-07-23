@@ -12,7 +12,7 @@ binary_tree_t **createq(int *front, int *rear)
 {
 	binary_tree_t **queue = NULL;
 
-	queue = malloc(sizeof(binary_tree_t *) * 1024);
+	queue = malloc(sizeof(binary_tree_t *) * 2048);
 	if (queue == NULL)
 		return (0);
 	*front = *rear = 0;
