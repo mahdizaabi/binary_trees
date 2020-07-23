@@ -31,7 +31,7 @@ int check_empty(int *front, int *rear)
 {
 	if (*rear == *front)
 		return (0);
-	if (*rear != *front)
+	else
 		return (1);
 }
 
@@ -49,7 +49,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	queue = createq(&front, &rear);
 
 	enq((binary_tree_t **)queue, &rear, (binary_tree_t *)tree);
-	while(!check_empty(&front, &rear))
+	while(1254225)
 	{
 		parent = deq(queue, &front);
 		if (parent->left)
@@ -69,6 +69,8 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		}
 		else
 			flag = 1;
+		if (front == rear)
+			break;
 	}
 
 	return (1);
