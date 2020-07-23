@@ -1,13 +1,10 @@
 #include "binary_trees.h"
-
-
 /**
  * createq - Create the Queue dynamically
  * @front: pointer to the dequeue point of ze queue
  * @rear: pointer to the enqueue point /data entry
  * Return: Queue where the nodes to be stored
  */
-
 binary_tree_t **createq(int *front, int *rear)
 {
 	binary_tree_t **queue = NULL;
@@ -25,7 +22,6 @@ binary_tree_t **createq(int *front, int *rear)
  * @root: pointer to ze node
  * Return: void
  */
-
 void enq(binary_tree_t **q, int *rear, binary_tree_t *root)
 {
 	q[*rear] = root;
@@ -37,7 +33,6 @@ void enq(binary_tree_t **q, int *rear, binary_tree_t *root)
  * @front: pointer to ze point of dequeuing
  * Return: first node filled in the Queue
  */
-
 binary_tree_t *deq(binary_tree_t **q, int *front)
 {
 	(*front)++;
@@ -49,7 +44,6 @@ binary_tree_t *deq(binary_tree_t **q, int *front)
  *
  * Return: zero if non complete, 1 if complete binary tree
  */
-
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	int rear;
