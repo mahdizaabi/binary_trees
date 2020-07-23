@@ -1,5 +1,5 @@
 #include "binary_trees.h"
-#define BUFFER 1024 /* size of the Queue */
+
 
 /**
  * createq - Create the Queue dynamically
@@ -12,7 +12,7 @@ binary_tree_t **createq(int *front, int *rear)
 {
 	binary_tree_t **queue = NULL;
 
-	queue = malloc(sizeof(binary_tree_t *) * BUFFER);
+	queue = malloc(sizeof(binary_tree_t *) * 1024);
 	if (queue == NULL)
 		return (0);
 	*front = *rear = 0;
@@ -79,6 +79,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (parent->right)
 		{
 			if (flag == 1)
+
 			return (0);
 			enq(queue, &rear, parent->right);
 		}
@@ -87,6 +88,6 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (front == rear)
 			break;
 	}
-
+	free(queue);
 	return (1);
 }
