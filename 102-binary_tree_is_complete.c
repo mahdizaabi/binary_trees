@@ -13,7 +13,7 @@ binary_tree_t **createq(int *front, int *rear)
 	binary_tree_t **queue = NULL;
 	queue = malloc(sizeof(binary_tree_t*) * BUFFER);
 	if (queue == NULL)
-		return NULL;
+		return (0);
 	*front = *rear = 0;
 	return ((binary_tree_t **)queue);
 }
@@ -40,15 +40,16 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	int rear;
 	int front;
 	binary_tree_t *parent = NULL;
+	binary_tree_t **queue = NULL;
 	int flag = 0;
 
 	if (tree == NULL)
-		return (NULL);
+		return (0);
 
-	binary_tree_t **queue = createq(&front, &rear);
+	queue = createq(&front, &rear);
 
-	enq(tree, &rear, root);
-	while(!chech_empty(&front, &rear))
+	enq((binary_tree_t **)queue, &rear, (binary_tree_t *)tree);
+	while(!check_empty(&front, &rear))
 	{
 		parent = deq(queue, &front);
 		if (parent->left)
