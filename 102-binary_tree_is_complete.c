@@ -70,7 +70,10 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (parent->left)
 		{
 			if (flag == 1)
+			{
+				free(queue);
 				return (0);
+			}
 			enq(queue, &rear, parent->left);
 		}
 		else
@@ -79,8 +82,10 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (parent->right)
 		{
 			if (flag == 1)
-
-			return (0);
+			{
+				free(queue);
+				return (0);
+			}
 			enq(queue, &rear, parent->right);
 		}
 		else
