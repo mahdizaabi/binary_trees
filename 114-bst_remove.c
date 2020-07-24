@@ -86,18 +86,16 @@ bst_t *del_node_two(bst_t *target, bst_t *root)
 
 	go_suc = target->right;
 	while (go_suc->left != NULL)
-	{
 		go_suc = go_suc->left;
-	}
 	if (root == target)
-        {
-                root->n = go_suc->n;
-                if (go_suc->parent->left == go_suc)
-                        go_suc->parent->left = NULL;
-                else
-                        go_suc->parent->right = NULL;
-                free(go_suc);
-        }
+	{
+		root->n = go_suc->n;
+		if (go_suc->parent->left == go_suc)
+			go_suc->parent->left = NULL;
+		else
+			go_suc->parent->right = NULL;
+		free(go_suc);
+	}
 
 	else if (target->parent->right == target)
 	{
@@ -138,7 +136,7 @@ bst_t *bst_remove(bst_t *root, int value)
 	target = bst_search(root, value);
 
 	if (target == NULL)
-		return NULL;
+		return (NULL);
 
 	if ((target->left && !target->right) || (!target->left && target->right))
 		return (del_node_one(target, root));
