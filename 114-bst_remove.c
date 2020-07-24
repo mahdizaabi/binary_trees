@@ -27,66 +27,54 @@ bst_t *bst_search(const bst_t *tree, int value)
  * @value: value of the node
  * Return: node
  */
-bst_t *del_node_one(bst_t *target)
+bst_t *del_node_one(bst_t *target, bst_t *root)
 {
-		parentx = (target)->parent;
-		if ((!target-)>right)
+	bst_t *parentx = NULL;
+	bst_t *childx = NULL;
+
+	parentx = target->parent;
+	if (!target->right)
+	{
+		childx = target->left;
+		parentx = target->parent;
+		if (parentx->right == target)
 		{
-			childx = target->left;
-			free(target);
-			parent->left = childx;
-			childx->parent = parent;
+			target->parent->right = NULL;
+			target->parent->right = childx;
 		}
 		else
 		{
-			childx = parent->right;
-			free(target);
-			parent->right = childx;
-			childx->parent = parent;
+			target->parent->left = NULL;
+			target->parent->left = childx;
 		}
+		free(target);
+		target = NULL;
+		childx->parent = parentx;
 	}
-/**
- * del_node_two - searches for a value in a binary search tree
- * @root: pointer to the node to be deleted
- * Return: pointer to the node containing the searched , or NULL
- */
-bst_t *del_node_two(bst_t *node)
-{
-	if (node == NULL)
-		return (NULL);
-
-	current = target->left;
-	
-	while(current->left != NULL)
+	else
 	{
-		current = current->left;
-	}
-	successeur = current;
-	del_node_one(current);
-	if (parent != NULL)
-	{
-		if (target == target->parent->left)
+		childx = target->right;
+		parentx = target->parent;
+		if (parentx->right == target)
 		{
-			target->parent->left = successeur;
+			target->parent->right = NULL;
+			target->parent->right = childx;
 		}
 		else
 		{
-			target->parent->right = successeur;
-
-
-
-
-
-
-
-
+			target->parent->left = NULL;
+			target->parent->left = childx;
+		}
+		free(target);
+		target = NULL;
+		childx->parent = parentx;
+	}
+	return (root);
 }
 
 bst_t *bst_remove(bst_t *root, int value)
 {
 	bst_t *target = NULL;
-	bst_t *parentx = NULL;
-	bst_t *childx = NULL;
 
 	if (root == NULL)
 		return (NULL);
@@ -96,16 +84,14 @@ bst_t *bst_remove(bst_t *root, int value)
 	if (target == NULL)
 		return NULL;
 
-	if (target->left && !target->right || !target->left && target->right)
+	if ((target->left && !target->right) || (!target->left && target->right))
+		return (del_node_one(target, root));
+
+	if (target->left == NULL && target->right == NULL)
 	{
-		del_node_one(&target);
-	}
-	else if (!target->left && !target->right)
-	{
+		target->parent->left = NULL;
 		free(target);
-	}
-	else
-	{
-		delete_node_two();
+		target = NULL;
 	}
 	return (root);
+}
