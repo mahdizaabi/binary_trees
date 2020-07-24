@@ -23,8 +23,8 @@ bst_t *bst_search(const bst_t *tree, int value)
 }
 /**
  * del_node_onde - delete node with only one child
- * @parent: parent node
- * @value: value of the node
+ * @target: parent node
+ * @root: value of the node
  * Return: node
  */
 bst_t *del_node_one(bst_t *target, bst_t *root)
@@ -71,7 +71,63 @@ bst_t *del_node_one(bst_t *target, bst_t *root)
 	}
 	return (root);
 }
+/**
+ * del_node_two - function to insert a value in a Binary search tree
+ * @target: double pointer to the tree
+ * @root: data to store into the created node
+ * Return: the inserted node
+ */
+bst_t *del_node_two(bst_t *target, bst_t *root)
+{
+	bst_t *go_suc = NULL;
 
+	if (root == NULL)
+		return (NULL);
+
+	go_suc = target->right;
+	while (go_suc->left != NULL)
+	{
+		go_suc = go_suc->left;
+	}
+	if (root == target)
+        {
+                root->n = go_suc->n;
+                if (go_suc->parent->left == go_suc)
+                        go_suc->parent->left = NULL;
+                else
+                        go_suc->parent->right = NULL;
+                free(go_suc);
+        }
+
+	else if (target->parent->right == target)
+	{
+		target->n = go_suc->n;
+		if (go_suc->parent->left == go_suc)
+			go_suc->parent->left = NULL;
+		else
+			go_suc->parent->right = NULL;
+		free(go_suc);
+	}
+	else if (target->parent->left == target)
+	{
+		target->n = go_suc->n;
+		if (go_suc->parent->left == go_suc)
+			go_suc->parent->left = NULL;
+		else
+			go_suc->parent->right = NULL;
+		free(go_suc);
+	}
+
+	return (root);
+}
+
+
+/**
+ * bst_remove- prufen ob Wert des Nodes geringer/grösser:links/recht subtreee
+ * @root: pointer to the root of ze tree
+ * @value: value to inser
+ * Return: pointer to the root
+ */
 bst_t *bst_remove(bst_t *root, int value)
 {
 	bst_t *target = NULL;
@@ -96,5 +152,8 @@ bst_t *bst_remove(bst_t *root, int value)
 		free(target);
 		target = NULL;
 	}
+	if ((target->left && target->right) || target->parent == NULL)
+		return (del_node_two(target, root));
+
 	return (root);
 }
