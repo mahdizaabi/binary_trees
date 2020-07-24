@@ -89,7 +89,10 @@ bst_t *bst_remove(bst_t *root, int value)
 
 	if (target->left == NULL && target->right == NULL)
 	{
-		target->parent->left = NULL;
+		if (target->parent->left == target)
+			target->parent->left = NULL;
+		else
+			target->parent->right = NULL;
 		free(target);
 		target = NULL;
 	}
