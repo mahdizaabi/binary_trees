@@ -1,5 +1,5 @@
 #include "binary_trees.h"
-#include "limits.h"
+
 /**
  * check_bst- prufen ob Wert des Nodes geringer/grösser:links/recht subtreee
  * @root: pointer to the root of ze tree
@@ -15,6 +15,8 @@ int check_bst(const binary_tree_t *root, int min, int max)
 		return (1);
 	if (root->n < min || root->n > max)
 		return (0);
+	else
+		return (1);
 
 	return (check_bst(root->left, min, root->n) &&
 	check_bst(root->right, root->n, max));
@@ -31,7 +33,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	if (!tree->left || !tree->right || check_bst(tree, INT_MIN, INT_MAX))
+	if (check_bst(tree, INT_MIN, INT_MAX))
 		return (1);
 
 	return (0);
