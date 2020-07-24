@@ -22,21 +22,65 @@ bst_t *bst_search(const bst_t *tree, int value)
 	return (NULL);
 }
 /**
- * del_node_onde - insert left
+ * del_node_onde - delete node with only one child
  * @parent: parent node
  * @value: value of the node
  * Return: node
  */
+bst_t *del_node_one(bst_t *target)
+{
+		parentx = (target)->parent;
+		if ((!target-)>right)
+		{
+			childx = target->left;
+			free(target);
+			parent->left = childx;
+			childx->parent = parent;
+		}
+		else
+		{
+			childx = parent->right;
+			free(target);
+			parent->right = childx;
+			childx->parent = parent;
+		}
+	}
 /**
  * del_node_two - searches for a value in a binary search tree
  * @root: pointer to the node to be deleted
  * Return: pointer to the node containing the searched key, or NULL
  */
-bst_t * del_node_two(bst_t *node)
+bst_t *del_node_two(bst_t *node)
 {
 	if (node == NULL)
 		return (NULL);
-	successor = find_successor()
+
+	current = target->left;
+	
+	while(current->left != NULL)
+	{
+		current = current->left;
+	}
+	successeur = current;
+	del_node_one(current);
+	if (parent != NULL)
+	{
+		if (target == target->parent->left)
+		{
+			target->parent->left = successeur;
+		}
+		else
+		{
+			target->parent->right = successeur;
+
+
+
+
+
+
+
+
+}
 
 bst_t *bst_remove(bst_t *root, int value)
 {
@@ -54,19 +98,7 @@ bst_t *bst_remove(bst_t *root, int value)
 
 	if (target->left && !target->right || !target->left && target->right)
 	{
-		parentx = target->parent;
-		if (!target->right)
-		{
-			childx = target->left;
-			free(target);
-			parent->left = childx;
-		}
-		else
-		{
-			childx = parent->right;
-			free(target);
-			parent->right = childx;
-		}
+		del_node_one(&target);
 	}
 	else if (!target->left && !target->right)
 	{
