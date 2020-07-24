@@ -31,13 +31,8 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	if (!tree->left || !tree->right)
-	{
-		if (check_bst(tree, INT_MIN, INT_MAX))
-			return (1);
-		else
-			return (0);
-	}
+	if (!tree->left || !tree->right || check_bst(tree, INT_MIN, INT_MAX))
+		return (1);
 
-	return (check_bst(tree, INT_MIN, INT_MAX));
+	return (0);
 }
