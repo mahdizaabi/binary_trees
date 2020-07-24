@@ -48,7 +48,7 @@ bst_t *del_node_one(bst_t *target)
 /**
  * del_node_two - searches for a value in a binary search tree
  * @root: pointer to the node to be deleted
- * Return: pointer to the node containing the searched key, or NULL
+ * Return: pointer to the node containing the searched , or NULL
  */
 bst_t *del_node_two(bst_t *node)
 {
