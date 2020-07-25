@@ -22,7 +22,7 @@ bst_t *bst_search(const bst_t *tree, int value)
 	return (NULL);
 }
 /**
- * del_node_onde - delete node with only one child
+ * del_node_one - delete node with only one child
  * @target: parent node
  * @root: value of the node
  * Return: node
@@ -148,10 +148,10 @@ bst_t *bst_remove(bst_t *root, int value)
 			target->parent->left = NULL;
 		else
 			target->parent->right = NULL;
-		free(target);
+
 	}
 	if ((target->left && target->right))
 		return (del_node_two(target, root));
-
+	free(target);
 	return (root);
 }
