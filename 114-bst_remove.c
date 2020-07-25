@@ -135,6 +135,7 @@ bst_t *bst_remove(bst_t *root, int value)
 
 	target = bst_search(root, value);
 
+
 	if (target == NULL)
 		return (NULL);
 
@@ -148,9 +149,8 @@ bst_t *bst_remove(bst_t *root, int value)
 		else
 			target->parent->right = NULL;
 		free(target);
-		target = NULL;
 	}
-	if ((target->left && target->right) || target->parent == NULL)
+	if ((target->left && target->right))
 		return (del_node_two(target, root));
 
 	return (root);
